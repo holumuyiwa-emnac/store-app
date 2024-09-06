@@ -112,6 +112,7 @@ class _StoreAppState extends State<StoreApp> {
         ),
         appBar: AppBar(
           title: _screensName[_pageIndex],
+          centerTitle: true,
           backgroundColor: Color.fromARGB(255, 243, 243, 243),
           toolbarHeight: 80,
           shadowColor: Colors.transparent,
@@ -122,6 +123,9 @@ class _StoreAppState extends State<StoreApp> {
               onPressed: () {},
               icon: Icon(Icons.search, size: 24),
             ),
+            SizedBox(
+              width: 4,
+            )
           ],
         ),
       ),

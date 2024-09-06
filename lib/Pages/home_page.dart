@@ -1,16 +1,26 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import '../components/product_card.dart';
+import '../components/product_card_big.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  final List products = [
+    {
+      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
+      'image': 'product.png'
+    },
+    {'name': "Adidas Men's Tie-Dye Football Shirt", 'image': 'product.png'},
+    {'name': "Adidas Men's Football Shirt", 'image': 'product.png'},
+    {'name': "Adidas Women's Tie-Dye Football Shirt", 'image': 'product.png'},
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
         child: Column(
           children: [
             Row(
@@ -69,7 +79,7 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(fontSize: 16),
                     ),
                     Text(
-                      '2023/2024',
+                      '${DateTime.now().year - 1}/${DateTime.now().year}',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
                     ),
@@ -86,71 +96,25 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             SizedBox(
-              height: 246, // Set a height for horizontal list
+              height: 186, // Set a height for horizontal list
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Container(
-                    width: 172,
-                    height: 246,
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 140,
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(243, 243, 243, 1),
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Nike F.C. Women's Tie-Dye Football Shirt",
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                '#55.25',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  ProductCard(
+                      productTitle: products[0]['name'],
+                      productImage: products[0]['image']),
+                  SizedBox(
+                    width: 12,
                   ),
-                  SizedBox(width: 12),
-                  Container(
-                    width: 172,
-                    height: 246,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
-                    ),
+                  ProductCard(
+                      productTitle: products[1]['name'],
+                      productImage: products[1]['image']),
+                  SizedBox(
+                    width: 12,
                   ),
-                  SizedBox(width: 12),
-                  Container(
-                    width: 172,
-                    height: 246,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
-                    ),
-                  ),
+                  ProductCard(
+                      productTitle: products[2]['name'],
+                      productImage: products[2]['image'])
                 ],
               ),
             ),
@@ -172,87 +136,21 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 12,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 172,
-                  height: 246,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 140,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 243, 243, 1),
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Nike F.C. Women's Tie-Dye Football Shirt",
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              '#55.25',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+              height: 400,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
                 ),
-                Container(
-                  width: 168,
-                  height: 246,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 168,
-                  height: 246,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  width: 168,
-                  height: 246,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ProductCardBig(
+                    productTitle: products[index]['name'],
+                    productImage: products[index]['image'],
+                  );
+                },
+              ),
             ),
           ],
         ),
