@@ -17,7 +17,6 @@ class ProductCardBig extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(6),
       width: 170,
-      height: 240,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -25,9 +24,9 @@ class ProductCardBig extends StatelessWidget {
       child: Column(
         children: [
           Image(
-            height: 125,
-            width: 150,
-            fit: BoxFit.fitWidth,
+            height: 162,
+            width: 162,
+            fit: BoxFit.fill,
             image: AssetImage('assets/$productImage'),
           ),
           SizedBox(

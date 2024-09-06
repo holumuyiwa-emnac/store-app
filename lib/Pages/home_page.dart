@@ -136,12 +136,13 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 400,
+              height: 460,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
+                  childAspectRatio: 0.8,
                 ),
                 itemCount: products.length,
                 itemBuilder: (context, index) {
