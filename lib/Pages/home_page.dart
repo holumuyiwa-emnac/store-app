@@ -97,26 +97,17 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 12),
             SizedBox(
               height: 186, // Set a height for horizontal list
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ProductCard(
-                      productTitle: products[0]['name'],
-                      productImage: products[0]['image']),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  ProductCard(
-                      productTitle: products[1]['name'],
-                      productImage: products[1]['image']),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  ProductCard(
-                      productTitle: products[2]['name'],
-                      productImage: products[2]['image'])
-                ],
-              ),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: products.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: ProductCard(
+                          productTitle: products[index]['name'],
+                          productImage: products[index]['image']),
+                    );
+                  }),
             ),
             SizedBox(height: 12),
             Row(
@@ -138,6 +129,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 460,
               child: GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
