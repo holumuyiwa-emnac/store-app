@@ -37,7 +37,7 @@ class _ProductPageState extends State<ProductPage> {
       body: ListView(
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: Container(
               height: 400,
               decoration: BoxDecoration(

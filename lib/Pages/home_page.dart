@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:store_app/components/category_card.dart';
 import '../components/product_card.dart';
 import '../components/product_card_big.dart';
 
@@ -18,6 +19,16 @@ class HomePage extends StatelessWidget {
       'price': 65
     },
     {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
       'name': "Adidas Men's Football Shirt",
       'image': 'product.png',
       'price': 100
@@ -27,6 +38,24 @@ class HomePage extends StatelessWidget {
       'image': 'product.png',
       'price': 85
     },
+  ];
+
+  final List categories = [
+    {
+      'image': "women.png",
+      'title': "Women's",
+      'subtitle': "Wears & Accessories",
+    },
+    {
+      'image': "men.png",
+      'title': "Men's",
+      'subtitle': "Wears & Accessories",
+    },
+    {
+      'image': "kids.png",
+      'title': "Kid's",
+      'subtitle': "Wears & Accessories",
+    }
   ];
   @override
   Widget build(BuildContext context) {
@@ -55,29 +84,16 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 12),
             SizedBox(
               height: 246, // Set a height for horizontal list
-              child: ListView(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: categories.length,
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
-                    child: Container(
-                      width: 260,
-                      height: 246,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 260,
-                    height: 246,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+                itemBuilder: (BuildContext context, int index) {
+                  return CategoryCard(
+                      image: categories[index]['image'],
+                      title: categories[index]['title'],
+                      subtile: categories[index]['subtitle']);
+                },
               ),
             ),
             SizedBox(height: 12),
@@ -142,8 +158,8 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 480,
               child: GridView.builder(
+                shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

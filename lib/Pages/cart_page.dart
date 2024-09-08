@@ -15,21 +15,14 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: Column(
-              //align to left
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Cart',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
                 Column(
                   children: [
                     GestureDetector(
@@ -41,127 +34,76 @@ class _CartPageState extends State<CartPage> {
                           ),
                         );
                       },
-                      child: Container(
-                        height: 120,
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(color: Colors.white),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(243, 243, 243, 1),
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Nike F.C. Women's Tie-Dye Football Shirt",
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  Text(
-                                    '#55.25',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 12),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
+                          tileColor: Colors.white,
+                          leading:
+                              Image(image: AssetImage('assets/product.png')),
+                          title: Text(
+                            'Product Name',
+                            style: TextStyle(fontSize: 14),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          subtitle: Text('\$55.25'),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(Icons.delete),
+                              GestureDetector(onTap: () {}, child: Text('open'))
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Positioned(
+              bottom: 12,
+              child: Container(
+                padding: EdgeInsets.all(24),
+                decoration: BoxDecoration(color: Colors.white),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          '225.00',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 12,
                     ),
                     Container(
-                      height: 120,
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 80,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(243, 243, 243, 1),
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      height: 120,
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 80,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(243, 243, 243, 1),
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                        ],
+                      padding: EdgeInsets.only(top: 8, bottom: 8),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.circular(4)),
+                      child: Text(
+                        'Check Out',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     )
                   ],
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          Container(
-            height: 148,
-            padding: EdgeInsets.all(24),
-            decoration: BoxDecoration(color: Colors.white),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      '225.00',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
                 ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 52,
-                  decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(4)),
-                  child: Text(
-                    'Check Out',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
+              ))
         ],
       ),
     );

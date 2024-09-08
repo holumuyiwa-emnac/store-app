@@ -3,101 +3,79 @@
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatelessWidget {
-  const FavoritePage({super.key});
+  final List favorites = [
+    {
+      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 55
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Football Shirt",
+      'image': 'product.png',
+      'price': 100
+    },
+    {
+      'name': "Adidas Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 85
+    },
+  ];
+  FavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(
           //align to left
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Favorite',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Column(
-              children: [
-                Container(
-                  height: 120,
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 243, 243, 1),
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Nike F.C. Women's Tie-Dye Football Shirt",
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            Text(
-                              '#55.25',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: favorites.length,
+              itemBuilder: (BuildContext context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 12),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
+                    tileColor: Colors.white,
+                    leading: Image(
+                        image:
+                            AssetImage('assets/${favorites[index]['image']}')),
+                    title: Text(
+                      favorites[index]['name'],
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    subtitle: Text('\$${favorites[index]['price'].toString()}'),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Icons.delete),
+                        GestureDetector(onTap: () {}, child: Text('open'))
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  height: 120,
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 243, 243, 1),
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  height: 120,
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 243, 243, 1),
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                );
+              },
             )
           ],
         ),
