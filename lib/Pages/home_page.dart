@@ -9,11 +9,24 @@ class HomePage extends StatelessWidget {
   final List products = [
     {
       'name': "Nike F.C. Women's Tie-Dye Football Shirt",
-      'image': 'product.png'
+      'image': 'product.png',
+      'price': 55
     },
-    {'name': "Adidas Men's Tie-Dye Football Shirt", 'image': 'product.png'},
-    {'name': "Adidas Men's Football Shirt", 'image': 'product.png'},
-    {'name': "Adidas Women's Tie-Dye Football Shirt", 'image': 'product.png'},
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Football Shirt",
+      'image': 'product.png',
+      'price': 100
+    },
+    {
+      'name': "Adidas Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 85
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -96,7 +109,7 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             SizedBox(
-              height: 186, // Set a height for horizontal list
+              height: 192, // Set a height for horizontal list
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
@@ -104,8 +117,10 @@ class HomePage extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(right: 12),
                       child: ProductCard(
-                          productTitle: products[index]['name'],
-                          productImage: products[index]['image']),
+                        productTitle: products[index]['name'],
+                        productImage: products[index]['image'],
+                        productPrice: products[index]['price'],
+                      ),
                     );
                   }),
             ),
@@ -127,20 +142,21 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 460,
+              height: 480,
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.78,
                 ),
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   return ProductCardBig(
                     productTitle: products[index]['name'],
                     productImage: products[index]['image'],
+                    productPrice: products[index]['price'],
                   );
                 },
               ),

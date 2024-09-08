@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class ProductCardBig extends StatelessWidget {
   final String productTitle;
   final String productImage;
+  final int productPrice;
 
   const ProductCardBig({
     super.key,
     required this.productTitle,
     required this.productImage,
+    required this.productPrice,
   });
 
   @override
@@ -22,6 +24,7 @@ class ProductCardBig extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image(
             height: 162,
@@ -34,8 +37,30 @@ class ProductCardBig extends StatelessWidget {
           ),
           Text(
             productTitle,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: TextStyle(fontSize: 10),
             textAlign: TextAlign.start,
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Row(
+            children: [
+              Text(
+                'Price:',
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Text(
+                '\$$productPrice',
+                style: TextStyle(fontSize: 14, color: Colors.red),
+                textAlign: TextAlign.start,
+              ),
+            ],
           ),
         ],
       ),
