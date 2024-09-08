@@ -16,16 +16,6 @@ class FavoritePage extends StatelessWidget {
       'price': 65
     },
     {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65
-    },
-    {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65
-    },
-    {
       'name': "Adidas Men's Football Shirt",
       'image': 'product.png',
       'price': 100
@@ -64,27 +54,23 @@ class FavoritePage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 12),
                     child: ListTile(
-                      contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
-                      tileColor: Colors.white,
-                      leading: Image(
-                          image: AssetImage(
-                              'assets/${favorites[index]['image']}')),
-                      title: Text(
-                        favorites[index]['name'],
-                        style: TextStyle(fontSize: 14),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      subtitle:
-                          Text('\$${favorites[index]['price'].toString()}'),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.delete),
-                          GestureDetector(onTap: () {}, child: Text('open'))
-                        ],
-                      ),
-                    ),
+                        contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
+                        tileColor: Colors.white,
+                        leading: Image(
+                            image: AssetImage(
+                                'assets/${favorites[index]['image']}')),
+                        title: Text(
+                          favorites[index]['name'],
+                          style: TextStyle(fontSize: 14),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        subtitle:
+                            Text('\$${favorites[index]['price'].toString()}'),
+                        trailing: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        )),
                   ),
                 );
               },

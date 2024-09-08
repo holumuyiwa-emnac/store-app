@@ -53,7 +53,7 @@ class _ProductPageState extends State<ProductPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '#55.25',
+                      '\$55.25',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.red,

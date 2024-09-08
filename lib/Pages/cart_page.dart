@@ -45,15 +45,12 @@ class _CartPageState extends State<CartPage> {
                             'Product Name',
                             style: TextStyle(fontSize: 14),
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            maxLines: 1,
                           ),
                           subtitle: Text('\$55.25'),
-                          trailing: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.delete),
-                              GestureDetector(onTap: () {}, child: Text('open'))
-                            ],
+                          trailing: Icon(
+                            Icons.delete,
+                            color: Colors.red,
                           ),
                         ),
                       ),

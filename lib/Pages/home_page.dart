@@ -20,16 +20,6 @@ class HomePage extends StatelessWidget {
       'price': 65
     },
     {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65
-    },
-    {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65
-    },
-    {
       'name': "Adidas Men's Football Shirt",
       'image': 'product.png',
       'price': 100
@@ -65,22 +55,11 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Categories',
-                  style: TextStyle(fontSize: 20),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'View All',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ],
+            Text(
+              'Categories',
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 12),
             SizedBox(
