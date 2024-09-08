@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:store_app/Pages/product_page.dart';
 
 class FavoritePage extends StatelessWidget {
   final List favorites = [
@@ -42,7 +43,7 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
         child: Column(
           //align to left
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,27 +52,38 @@ class FavoritePage extends StatelessWidget {
               shrinkWrap: true,
               itemCount: favorites.length,
               itemBuilder: (BuildContext context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: 12),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
-                    tileColor: Colors.white,
-                    leading: Image(
-                        image:
-                            AssetImage('assets/${favorites[index]['image']}')),
-                    title: Text(
-                      favorites[index]['name'],
-                      style: TextStyle(fontSize: 14),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    subtitle: Text('\$${favorites[index]['price'].toString()}'),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.delete),
-                        GestureDetector(onTap: () {}, child: Text('open'))
-                      ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductPage(),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 12),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
+                      tileColor: Colors.white,
+                      leading: Image(
+                          image: AssetImage(
+                              'assets/${favorites[index]['image']}')),
+                      title: Text(
+                        favorites[index]['name'],
+                        style: TextStyle(fontSize: 14),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                      subtitle:
+                          Text('\$${favorites[index]['price'].toString()}'),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.delete),
+                          GestureDetector(onTap: () {}, child: Text('open'))
+                        ],
+                      ),
                     ),
                   ),
                 );

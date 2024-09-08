@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:store_app/Pages/product_page.dart';
 import 'package:store_app/components/category_card.dart';
 import '../components/product_card.dart';
 import '../components/product_card_big.dart';
@@ -62,7 +63,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+        padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
         child: Column(
           children: [
             Row(
@@ -130,12 +131,22 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: ProductCard(
-                        productTitle: products[index]['name'],
-                        productImage: products[index]['image'],
-                        productPrice: products[index]['price'],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductPage(),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: ProductCard(
+                          productTitle: products[index]['name'],
+                          productImage: products[index]['image'],
+                          productPrice: products[index]['price'],
+                        ),
                       ),
                     );
                   }),
@@ -169,10 +180,20 @@ class HomePage extends StatelessWidget {
                 ),
                 itemCount: products.length,
                 itemBuilder: (context, index) {
-                  return ProductCardBig(
-                    productTitle: products[index]['name'],
-                    productImage: products[index]['image'],
-                    productPrice: products[index]['price'],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPage(),
+                        ),
+                      );
+                    },
+                    child: ProductCardBig(
+                      productTitle: products[index]['name'],
+                      productImage: products[index]['image'],
+                      productPrice: products[index]['price'],
+                    ),
                   );
                 },
               ),

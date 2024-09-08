@@ -75,6 +75,7 @@ class _StoreAppState extends State<StoreApp> {
           ],
         ),
         drawer: Drawer(
+          backgroundColor: Colors.white,
           child: Column(
             children: [
               DrawerHeader(
@@ -83,29 +84,62 @@ class _StoreAppState extends State<StoreApp> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('N O T I F I C A T I O N S'),
-                contentPadding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(Icons.notifications, color: Colors.white)),
+                title: Text('NOTIFICATIONS'),
+                contentPadding: EdgeInsets.only(left: 24),
               ),
               ListTile(
-                leading: Icon(Icons.archive),
-                title: Text('O R D E R S'),
-                contentPadding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(Icons.archive, color: Colors.white)),
+                title: Text('ORDERS'),
+                contentPadding: EdgeInsets.only(left: 24),
               ),
               ListTile(
-                leading: Icon(Icons.category_rounded),
-                title: Text('C A T E G O R Y'),
-                contentPadding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(Icons.category_rounded, color: Colors.white)),
+                title: Text('CATEGORIES'),
+                contentPadding: EdgeInsets.only(left: 24),
               ),
               ListTile(
-                leading: Icon(Icons.local_offer),
-                title: Text('O F F E R S'),
-                contentPadding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(
+                      Icons.local_offer,
+                      color: Colors.white,
+                    )),
+                title: Text('OFFERS'),
+                contentPadding: EdgeInsets.only(left: 24),
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('S E T T I N G S'),
-                contentPadding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(Icons.settings, color: Colors.white)),
+                title: Text('SETTINGS'),
+                contentPadding: EdgeInsets.only(left: 24),
               )
             ],
           ),
