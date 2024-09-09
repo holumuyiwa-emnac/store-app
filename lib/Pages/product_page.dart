@@ -41,7 +41,11 @@ class _ProductPageState extends State<ProductPage> {
             child: Container(
               height: 400,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                      image: AssetImage('assets/product.png'),
+                      fit: BoxFit.fitHeight)),
             ),
           ),
           Container(
