@@ -39,6 +39,8 @@ class ProfilePage extends StatelessWidget {
             Column(
               children: [
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
                   leading: Icon(Icons.person),
                   title: Text('Modify Information'),
                   subtitle: Text(
@@ -54,6 +56,8 @@ class ProfilePage extends StatelessWidget {
                   height: 12,
                 ),
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
                   leading: Icon(Icons.add_box),
                   title: Text('Order History'),
                   subtitle: Text(
@@ -69,6 +73,8 @@ class ProfilePage extends StatelessWidget {
                   height: 12,
                 ),
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
                   leading: Icon(Icons.security),
                   title: Text('Security'),
                   subtitle: Text(
@@ -84,6 +90,8 @@ class ProfilePage extends StatelessWidget {
                   height: 12,
                 ),
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
                   leading: Icon(Icons.notifications),
                   title: Text('Notifications'),
                   subtitle: Text(

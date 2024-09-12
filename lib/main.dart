@@ -99,6 +99,9 @@ class _StoreAppState extends State<StoreApp> {
                 title: Text('NOTIFICATIONS'),
                 contentPadding: EdgeInsets.only(left: 24),
               ),
+              SizedBox(
+                height: 12,
+              ),
               ListTile(
                 leading: Container(
                     padding: EdgeInsets.all(6),
@@ -110,6 +113,9 @@ class _StoreAppState extends State<StoreApp> {
                 title: Text('ORDERS'),
                 contentPadding: EdgeInsets.only(left: 24),
               ),
+              SizedBox(
+                height: 12,
+              ),
               ListTile(
                 leading: Container(
                     padding: EdgeInsets.all(6),
@@ -120,6 +126,9 @@ class _StoreAppState extends State<StoreApp> {
                     child: Icon(Icons.category_rounded, color: Colors.white)),
                 title: Text('CATEGORIES'),
                 contentPadding: EdgeInsets.only(left: 24),
+              ),
+              SizedBox(
+                height: 12,
               ),
               ListTile(
                 leading: Container(

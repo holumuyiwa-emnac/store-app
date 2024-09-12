@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               'Categories',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 12),
             SizedBox(
