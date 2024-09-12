@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:store_app/Pages/cart_page.dart';
-import 'package:store_app/Pages/favorite_page.dart';
-import 'package:store_app/Pages/home_page.dart';
-import 'package:store_app/Pages/product_page.dart';
-import 'package:store_app/Pages/profile_page.dart';
+import '../Pages/cart_page.dart';
+import '../Pages/favorite_page.dart';
+import '../Pages/home_page.dart';
+import '../Pages/product_page.dart';
+import '../Pages/profile_page.dart';
 
 void main() {
   runApp(const StoreApp());
@@ -135,17 +135,6 @@ class _StoreAppState extends State<StoreApp> {
                 title: Text('OFFERS'),
                 contentPadding: EdgeInsets.only(left: 24),
               ),
-              ListTile(
-                leading: Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.black,
-                    ),
-                    child: Icon(Icons.settings, color: Colors.white)),
-                title: Text('SETTINGS'),
-                contentPadding: EdgeInsets.only(left: 24),
-              )
             ],
           ),
         ),

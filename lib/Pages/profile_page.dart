@@ -17,9 +17,20 @@ class ProfilePage extends StatelessWidget {
               child: Container(
                 width: 300,
                 height: 300,
+                alignment: Alignment.bottomRight,
+                padding: EdgeInsets.only(right: 16, bottom: 16),
                 decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/image.png')),
                     borderRadius: BorderRadius.circular(200),
                     color: Colors.white),
+                child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                    child:
+                        IconButton(onPressed: () {}, icon: Icon(Icons.edit))),
               ),
             ),
             SizedBox(
@@ -27,31 +38,63 @@ class ProfilePage extends StatelessWidget {
             ),
             Column(
               children: [
-                Container(
-                  height: 60,
-                  color: Colors.white,
+                ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('Modify Information'),
+                  subtitle: Text(
+                    'Update your name, email, and contact details.',
+                    style: TextStyle(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  tileColor: Colors.white,
                 ),
                 SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
-                Container(
-                  height: 60,
-                  color: Colors.white,
+                ListTile(
+                  leading: Icon(Icons.add_box),
+                  title: Text('Order History'),
+                  subtitle: Text(
+                    'Relive your shopping journey, one order at a time.',
+                    style: TextStyle(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  tileColor: Colors.white,
                 ),
                 SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
-                Container(
-                  height: 60,
-                  color: Colors.white,
+                ListTile(
+                  leading: Icon(Icons.security),
+                  title: Text('Security'),
+                  subtitle: Text(
+                    'Manage your password, enable two-factor authentication, and set up security questions.',
+                    style: TextStyle(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  tileColor: Colors.white,
                 ),
                 SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
-                Container(
-                  height: 60,
-                  color: Colors.white,
-                )
+                ListTile(
+                  leading: Icon(Icons.notifications),
+                  title: Text('Notifications'),
+                  subtitle: Text(
+                    'Manage your password, enable two-factor authentication, and set up security questions.',
+                    style: TextStyle(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  tileColor: Colors.white,
+                ),
               ],
             )
           ],

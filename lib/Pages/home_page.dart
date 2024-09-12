@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:store_app/Pages/product_page.dart';
-import 'package:store_app/components/category_card.dart';
+import '../Pages/product_page.dart';
+import '../components/category_card.dart';
 import '../components/product_card.dart';
 import '../components/product_card_big.dart';
 

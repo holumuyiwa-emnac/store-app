@@ -16,22 +16,50 @@ class _CartPageState extends State<CartPage> {
     {
       'name': "Nike F.C. Women's Tie-Dye Football Shirt",
       'image': 'product.png',
-      'price': 55
+      'price': 55,
+      'category': "women's wears"
     },
     {
       'name': "Adidas Men's Tie-Dye Football Shirt",
       'image': 'product.png',
-      'price': 65
+      'price': 65,
+      'category': "women's wears"
     },
     {
       'name': "Adidas Men's Football Shirt",
       'image': 'product.png',
-      'price': 100
+      'price': 100,
+      'category': "women's wears"
     },
     {
       'name': "Adidas Women's Tie-Dye Football Shirt",
       'image': 'product.png',
-      'price': 85
+      'price': 85,
+      'category': "women's wears"
+    },
+    {
+      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 55,
+      'category': "women's wears"
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65,
+      'category': "women's wears"
+    },
+    {
+      'name': "Adidas Men's Football Shirt",
+      'image': 'product.png',
+      'price': 100,
+      'category': "women's wears"
+    },
+    {
+      'name': "Adidas Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 85,
+      'category': "women's wears"
     },
   ];
 
@@ -53,71 +81,73 @@ class _CartPageState extends State<CartPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+            padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: SizedBox(
+                height: 500,
                 child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: cart.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPage(),
+                  shrinkWrap: true,
+                  itemCount: cart.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductPage(),
+                          ),
+                        );
+                      },
+                      child: CartAndFavoriteCard(
+                        itemName: cart[index]['name'],
+                        itemPrice: cart[index]['price'],
+                        itemImage: Image(
+                            image:
+                                AssetImage('assets/${cart[index]['image']}')),
+                        category: cart[index]['category'],
                       ),
                     );
                   },
-                  child: CartAndFavoriteCard(
-                      itemName: cart[index]['name'],
-                      itemPrice: cart[index]['price'],
-                      itemImage: Image(
-                          image: AssetImage('assets/${cart[index]['image']}'))),
-                );
-              },
-            )),
+                )),
           ),
-          Positioned(
-              bottom: 12,
-              child: Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(color: Colors.white),
-                child: Column(
+          Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(color: Colors.white),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          '\$$cartTotal',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
+                    Text(
+                      'Total',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(
-                      height: 12,
+                    Text(
+                      '\$$cartTotal',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(4)),
-                      child: Text(
-                        'Check Out',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    )
                   ],
                 ),
-              ))
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(4)),
+                  child: Text(
+                    'Check Out',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
