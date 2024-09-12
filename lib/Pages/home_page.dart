@@ -29,6 +29,26 @@ class HomePage extends StatelessWidget {
       'image': 'product.png',
       'price': 85
     },
+    {
+      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 55
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65
+    },
+    {
+      'name': "Adidas Men's Football Shirt",
+      'image': 'product.png',
+      'price': 100
+    },
+    {
+      'name': "Adidas Women's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 85
+    },
   ];
 
   final List categories = [
@@ -98,7 +118,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'View All',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
                 ),
               ],
@@ -142,7 +162,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'View All',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
                 ),
               ],

@@ -50,6 +50,8 @@ class _StoreAppState extends State<StoreApp> {
       home: Scaffold(
         body: _screens[_pageIndex],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
           type: BottomNavigationBarType.fixed,
           // current page index to display on buttom nav bar
           currentIndex: _pageIndex,
@@ -79,16 +81,19 @@ class _StoreAppState extends State<StoreApp> {
           child: Column(
             children: [
               DrawerHeader(
-                child: Container(
-                  color: Color.fromRGBO(243, 243, 243, 1),
+                margin: EdgeInsets.only(bottom: 32),
+                child: Icon(
+                  Icons.shopping_cart,
+                  size: 140,
+                  color: Colors.black,
                 ),
               ),
               ListTile(
                 leading: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.purple,
+                      color: Colors.black,
                     ),
                     child: Icon(Icons.notifications, color: Colors.white)),
                 title: Text('NOTIFICATIONS'),
@@ -96,10 +101,10 @@ class _StoreAppState extends State<StoreApp> {
               ),
               ListTile(
                 leading: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.purple,
+                      color: Colors.black,
                     ),
                     child: Icon(Icons.archive, color: Colors.white)),
                 title: Text('ORDERS'),
@@ -107,10 +112,10 @@ class _StoreAppState extends State<StoreApp> {
               ),
               ListTile(
                 leading: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.purple,
+                      color: Colors.black,
                     ),
                     child: Icon(Icons.category_rounded, color: Colors.white)),
                 title: Text('CATEGORIES'),
@@ -118,10 +123,10 @@ class _StoreAppState extends State<StoreApp> {
               ),
               ListTile(
                 leading: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.purple,
+                      color: Colors.black,
                     ),
                     child: Icon(
                       Icons.local_offer,
@@ -132,10 +137,10 @@ class _StoreAppState extends State<StoreApp> {
               ),
               ListTile(
                 leading: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.purple,
+                      color: Colors.black,
                     ),
                     child: Icon(Icons.settings, color: Colors.white)),
                 title: Text('SETTINGS'),

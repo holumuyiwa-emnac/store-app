@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:store_app/Pages/product_page.dart';
+import 'package:store_app/components/cart_and_favorite_card.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -67,26 +68,11 @@ class _CartPageState extends State<CartPage> {
                       ),
                     );
                   },
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 12),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
-                      tileColor: Colors.white,
-                      leading: Image(
-                          image: AssetImage('assets/${cart[index]['image']}')),
-                      title: Text(
-                        cart[index]['name'],
-                        style: TextStyle(fontSize: 14),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      subtitle: Text('\$${cart[index]['price']}'),
-                      trailing: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
+                  child: CartAndFavoriteCard(
+                      itemName: cart[index]['name'],
+                      itemPrice: cart[index]['price'],
+                      itemImage: Image(
+                          image: AssetImage('assets/${cart[index]['image']}'))),
                 );
               },
             )),
@@ -115,10 +101,10 @@ class _CartPageState extends State<CartPage> {
                       height: 12,
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 8, bottom: 8),
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: Colors.purple,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(4)),
                       child: Text(
                         'Check Out',
