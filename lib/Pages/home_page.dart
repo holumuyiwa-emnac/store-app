@@ -8,6 +8,7 @@ import '../components/product_card_big.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// Product model class representing product
 class Product {
   final int id;
   final String title;
@@ -35,6 +36,7 @@ class Product {
   }
 }
 
+// HomePage widget (stateful) which will display the product list and categories
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,21 +45,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // API call to fetch product list from fakestoreapi.com
   Future<List<Product>> fetchProducts() async {
     final response =
         await http.get(Uri.parse("https://fakestoreapi.com/products"));
 
     if (response.statusCode == 200) {
+      // Parse JSON response and convert each item to a Product object
       List<dynamic> body = jsonDecode(response.body);
       return body.map((item) => Product.fromJson(item)).toList();
     } else {
+      // Handle error in case of a failed API request
       throw Exception("Failed to load products");
     }
   }
 
+  // Static list of categories for display
   final List categories = [
     {
-      'image': "women.png",
+      'image': "women.png", // Local image path for the category
       'title': "Women's",
       'subtitle': "Wears & Accessories",
     },
@@ -76,28 +82,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 243, 243, 243),
+        backgroundColor: Color.fromARGB(255, 243, 243, 243), // Background color
         body: FutureBuilder<List<Product>>(
-            future: fetchProducts(),
+            future: fetchProducts(), // Fetch the product list
             builder: (context, snapshot) {
+              // Show loading indicator while waiting for data
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
+              }
+              // Handle error during data fetching
+              else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
-              } else if (snapshot.hasData) {
-                final products = snapshot.data!;
+              }
+              // Display the data once fetched
+              else if (snapshot.hasData) {
+                final products = snapshot.data!; // List of products
                 return SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  padding: EdgeInsets.fromLTRB(16, 0, 16, 16), // Page padding
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Section for categories display
                       Text(
                         'Categories',
                         style: TextStyle(fontSize: 24),
                       ),
                       SizedBox(height: 12),
+                      // Horizontal list view to show categories
                       SizedBox(
-                        height: 256, // Set a height for horizontal list
+                        height: 256,
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: categories.length,
@@ -111,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(height: 12),
+                      // Section for new arrivals
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -121,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                                 'New Arrivals',
                                 style: TextStyle(fontSize: 16),
                               ),
+                              // Display the current year
                               Text(
                                 '${DateTime.now().year - 1}/${DateTime.now().year}',
                                 style: TextStyle(
@@ -128,6 +143,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
+                          // 'View All' button for new arrivals
                           TextButton(
                             onPressed: () {},
                             child: Text(
@@ -139,8 +155,9 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       SizedBox(height: 12),
+                      // Horizontal list of new arrival products
                       SizedBox(
-                        height: 286, // Set a height for horizontal list
+                        height: 286,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: products.length,
@@ -148,6 +165,7 @@ class _HomePageState extends State<HomePage> {
                               final product = products[index];
                               return GestureDetector(
                                 onTap: () {
+                                  // Navigate to product page on tap
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -168,6 +186,7 @@ class _HomePageState extends State<HomePage> {
                             }),
                       ),
                       SizedBox(height: 12),
+                      // Section for 'Home Kits' display
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -185,21 +204,23 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
+                      // Grid view for displaying products under 'Home Kits'
                       SizedBox(
                         child: GridView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  mainAxisExtent: 320),
+                                  crossAxisCount: 2, // 2 items per row
+                                  crossAxisSpacing: 10, // Horizontal spacing
+                                  mainAxisSpacing: 10, // Vertical spacing
+                                  mainAxisExtent: 320), // Item height
                           itemCount: products.length,
                           itemBuilder: (context, index) {
                             final product = products[index];
                             return GestureDetector(
                               onTap: () {
+                                // Navigate to product page on tap
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -220,7 +241,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 );
-              } else {
+              }
+              // Fallback when no products are available
+              else {
                 return Center(child: Text('No products available.'));
               }
             }));
