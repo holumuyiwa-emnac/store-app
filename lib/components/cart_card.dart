@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 
-class CartAndFavoriteCard extends StatelessWidget {
+class CartCard extends StatelessWidget {
   final String itemName;
   final int itemPrice;
   final Image itemImage;
   final String category;
 
-  const CartAndFavoriteCard(
+  const CartCard(
       {super.key,
       required this.itemName,
       required this.itemPrice,
@@ -20,6 +20,7 @@ class CartAndFavoriteCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 16),
       child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         contentPadding: EdgeInsets.fromLTRB(8, 2, 8, 2),
         tileColor: Colors.white,
         leading: itemImage,
@@ -37,13 +38,13 @@ class CartAndFavoriteCard extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Colors.black54),
             ),
             Text('\$${itemPrice.toString()}',
-                style: TextStyle(fontSize: 12, color: Colors.red)),
+                style: TextStyle(fontSize: 16, color: Colors.red)),
           ],
         ),
         trailing: Icon(
           Icons.delete,
           color: Colors.red,
-          size: 28,
+          size: 24,
         ),
       ),
     );

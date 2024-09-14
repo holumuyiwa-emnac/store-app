@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:store_app/Pages/product_page.dart';
-import 'package:store_app/components/cart_and_favorite_card.dart';
+import '../Pages/product_page.dart';
+import '../components/cart_card.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -77,37 +77,34 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: ListView(
         children: [
           SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: SizedBox(
-                height: 500,
                 child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: cart.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductPage(),
-                          ),
-                        );
-                      },
-                      child: CartAndFavoriteCard(
-                        itemName: cart[index]['name'],
-                        itemPrice: cart[index]['price'],
-                        itemImage: Image(
-                            image:
-                                AssetImage('assets/${cart[index]['image']}')),
-                        category: cart[index]['category'],
+              shrinkWrap: true,
+              itemCount: cart.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductPage(),
                       ),
                     );
                   },
-                )),
+                  child: CartCard(
+                    itemName: cart[index]['name'],
+                    itemPrice: cart[index]['price'],
+                    itemImage: Image(
+                        image: AssetImage('assets/${cart[index]['image']}')),
+                    category: cart[index]['category'],
+                  ),
+                );
+              },
+            )),
           ),
           Container(
             padding: EdgeInsets.all(20),

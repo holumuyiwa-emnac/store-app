@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../Pages/product_page.dart';
-import '../components/cart_and_favorite_card.dart';
+import '../components/favorite_card.dart';
 
 class FavoritePage extends StatelessWidget {
   final List favorites = [
@@ -76,7 +76,7 @@ class FavoritePage extends StatelessWidget {
                   ),
                 );
               },
-              child: CartAndFavoriteCard(
+              child: FavoriteCard(
                 itemName: favorites[index]['name'],
                 itemPrice: favorites[index]['price'],
                 itemImage: Image(

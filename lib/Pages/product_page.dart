@@ -10,17 +10,29 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  final Map productDetail = {
+    'name': "Nike F.C. Women's Tie-Dye Football Shirt",
+    'details':
+        "The Nike F.C. Shirt blends 2 summer favourites: festivals and football. Soft, sweat-wicking fabric and a mesh racerback help you stay comfortable on the pitch or in the crowd.",
+    'image': 'product.png',
+    'price': 55,
+    'stock': 10
+  };
   int count = 0;
 
   void subtract() {
     setState(() {
-      --count;
+      if (count > 0) {
+        --count;
+      }
     });
   }
 
   void add() {
     setState(() {
-      ++count;
+      if (count < productDetail['stock']) {
+        ++count;
+      }
     });
   }
 
@@ -36,18 +48,25 @@ class _ProductPageState extends State<ProductPage> {
       ),
       body: ListView(
         children: [
-          SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-            child: Container(
-              height: 400,
+          Container(
+              alignment: AlignmentDirectional.bottomStart,
+              padding: EdgeInsets.only(left: 12, bottom: 12),
+              height: 420,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                      image: AssetImage('assets/product.png'),
+                      image: AssetImage('assets/${productDetail['image']}'),
                       fit: BoxFit.fitHeight)),
-            ),
-          ),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(4)),
+                child: Text(
+                  '${productDetail['stock']} in stock',
+                  style: TextStyle(fontSize: 16),
+                ),
+              )),
           Container(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
             color: Colors.white,
@@ -57,9 +76,9 @@ class _ProductPageState extends State<ProductPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$55.25',
+                      '\$${productDetail['price']}',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 24,
                         color: Colors.red,
                       ),
                     ),
@@ -81,9 +100,12 @@ class _ProductPageState extends State<ProductPage> {
                               height: 32,
                               width: 32,
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   borderRadius: BorderRadius.circular(8)),
-                              child: Text('-'),
+                              child: Text(
+                                '-',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
 
@@ -112,16 +134,16 @@ class _ProductPageState extends State<ProductPage> {
                   height: 12,
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nike F.C. Women's Tie-Dye Football Shirt",
+                      productDetail['name'],
                       style: TextStyle(fontSize: 18),
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text(
-                        "The Nike F.C. Shirt blends 2 summer favourites: festivals and football. Soft, sweat-wicking fabric and a mesh racerback help you stay comfortable on the pitch or in the crowd."),
+                    Text(productDetail['details']),
                     SizedBox(
                       height: 12,
                     ),
@@ -129,11 +151,10 @@ class _ProductPageState extends State<ProductPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         //-
-                        Container(
+                        Expanded(
+                            child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          height: 52,
-                          width: 160,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
@@ -142,12 +163,12 @@ class _ProductPageState extends State<ProductPage> {
                             'XS (UK 4-6)',
                             style: TextStyle(fontSize: 18),
                           ),
-                        ),
+                        )),
                         SizedBox(
                           width: 4,
                         ),
-                        //+
-                        Container(
+                        Expanded(
+                            child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           height: 52,
@@ -160,7 +181,7 @@ class _ProductPageState extends State<ProductPage> {
                             'Add To Bag',
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ],
