@@ -88,11 +88,39 @@ class _HomePageState extends State<HomePage> {
             builder: (context, snapshot) {
               // Show loading indicator while waiting for data
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return Center(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      color: Colors.black,
+                      strokeWidth: 8,
+                      strokeCap: StrokeCap.round,
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Text(
+                      'Loading..',
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                ));
               }
               // Handle error during data fetching
               else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '404..',
+                        style: TextStyle(fontSize: 40),
+                      ),
+                      Text('Unable to fetch data at this moment.')
+                    ],
+                  ),
+                );
               }
               // Display the data once fetched
               else if (snapshot.hasData) {
@@ -139,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 '${DateTime.now().year - 1}/${DateTime.now().year}',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w100),
+                                    fontSize: 16, fontWeight: FontWeight.w200),
                               ),
                             ],
                           ),

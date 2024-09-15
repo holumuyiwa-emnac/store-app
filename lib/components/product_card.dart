@@ -33,7 +33,7 @@ class ProductCard extends StatelessWidget {
             productImage,
             height: 158,
             width: 132,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               return Container(
                   height: 158,

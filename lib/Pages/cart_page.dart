@@ -4,14 +4,36 @@ import 'package:flutter/material.dart';
 import '../Pages/product_page.dart';
 import '../components/cart_card.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class Cart {
+  final int id;
+  final String title;
+  final double price;
+  final String description;
+  final String image;
 
-  @override
-  State<CartPage> createState() => _CartPageState();
+  Cart({
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.image,
+  });
+
+  // Factory constructor to create a Product object from JSON data
+  factory Cart.fromJson(Map<String, dynamic> json) {
+    return Cart(
+      id: json['id'],
+      title: json['title'],
+      price: json['price'].toDouble(),
+      description: json['description'],
+      image: json['image'],
+    );
+  }
 }
 
-class _CartPageState extends State<CartPage> {
+class CartPage extends StatelessWidget {
+  CartPage({super.key});
+
   final List cart = [
     {
       'name': "Nike F.C. Women's Tie-Dye Football Shirt",
@@ -32,9 +54,21 @@ class _CartPageState extends State<CartPage> {
       'category': "women's wears"
     },
     {
-      'name': "Adidas Women's Tie-Dye Football Shirt",
+      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
       'image': 'product.png',
-      'price': 85,
+      'price': 55,
+      'category': "women's wears"
+    },
+    {
+      'name': "Adidas Men's Tie-Dye Football Shirt",
+      'image': 'product.png',
+      'price': 65,
+      'category': "women's wears"
+    },
+    {
+      'name': "Adidas Men's Football Shirt",
+      'image': 'product.png',
+      'price': 100,
       'category': "women's wears"
     },
     {
@@ -55,12 +89,6 @@ class _CartPageState extends State<CartPage> {
       'price': 100,
       'category': "women's wears"
     },
-    {
-      'name': "Adidas Women's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 85,
-      'category': "women's wears"
-    },
   ];
 
   double calculateTotal() {
@@ -79,32 +107,34 @@ class _CartPageState extends State<CartPage> {
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       body: ListView(
         children: [
-          SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: SizedBox(
-                child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: cart.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductPage(),
-                      ),
-                    );
-                  },
-                  child: CartCard(
-                    itemName: cart[index]['name'],
-                    itemPrice: cart[index]['price'],
-                    itemImage: Image(
-                        image: AssetImage('assets/${cart[index]['image']}')),
-                    category: cart[index]['category'],
-                  ),
-                );
-              },
-            )),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: ListView.builder(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: cart.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPage(),
+                        ),
+                      );
+                    },
+                    child: CartCard(
+                      itemName: cart[index]['name'],
+                      itemPrice: cart[index]['price'],
+                      itemImage: Image(
+                          image: AssetImage('assets/${cart[index]['image']}')),
+                      category: cart[index]['category'],
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
           Container(
             padding: EdgeInsets.all(20),
