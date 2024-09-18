@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../Pages/cart_page.dart';
 import '../Pages/favorite_page.dart';
 import '../Pages/home_page.dart';
-import '../Pages/product_page.dart';
 import '../Pages/profile_page.dart';
 
 void main() {
@@ -33,7 +32,6 @@ class _StoreAppState extends State<StoreApp> {
     FavoritePage(),
     CartPage(),
     ProfilePage(),
-    ProductPage(),
   ];
   final List<Widget> _screensName = [
     Text(''),

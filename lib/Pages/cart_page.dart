@@ -120,7 +120,9 @@ class CartPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductPage(),
+                          builder: (context) => ProductPage(
+                            productId: 11,
+                          ),
                         ),
                       );
                     },
