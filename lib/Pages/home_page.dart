@@ -5,10 +5,8 @@ import '../Pages/product_page.dart';
 import '../components/category_card.dart';
 import '../components/product_card.dart';
 import '../components/product_card_big.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import '../components/api_service.dart';
 
-// Product model class representing product
 class Product {
   final int id;
   final String title;
@@ -45,21 +43,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // API call to fetch product list from fakestoreapi.com
-  Future<List<Product>> fetchProducts() async {
-    final response =
-        await http.get(Uri.parse("https://fakestoreapi.com/products"));
-
-    if (response.statusCode == 200) {
-      // Parse JSON response and convert each item to a Product object
-      List<dynamic> body = jsonDecode(response.body);
-      return body.map((item) => Product.fromJson(item)).toList();
-    } else {
-      // Handle error in case of a failed API request
-      throw Exception("Failed to load products");
-    }
-  }
-
   // Static list of categories for display
   final List categories = [
     {
@@ -84,7 +67,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 243, 243, 243), // Background color
         body: FutureBuilder<List<Product>>(
-            future: fetchProducts(), // Fetch the product list
+            future: fetchProducts(), // Fetch the product list from API service
             builder: (context, snapshot) {
               // Show loading indicator while waiting for data
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -188,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                         height: 286,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: products.length,
+                            itemCount: 10,
                             itemBuilder: (BuildContext context, int index) {
                               final product = products[index];
                               return GestureDetector(
