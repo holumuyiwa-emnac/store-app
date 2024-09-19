@@ -30,3 +30,17 @@ Future<Product> fetchProductDetail(int productId) async {
     throw Exception("Failed to load product detail");
   }
 }
+
+// Function to fetch cart data for a user
+Future<List<dynamic>> fetchCart(int userId) async {
+  final response =
+      await http.get(Uri.parse("https://fakestoreapi.com/carts/user/$userId"));
+
+  if (response.statusCode == 200) {
+    // Return the list of products in the cart
+    List<dynamic> body = jsonDecode(response.body);
+    return body.isNotEmpty ? body[0]['products'] : [];
+  } else {
+    throw Exception("Failed to load cart");
+  }
+}

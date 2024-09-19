@@ -5,6 +5,7 @@ class Product {
   final String description;
   final String image;
   final String category;
+  int quantity;
 
   Product({
     required this.id,
@@ -13,6 +14,7 @@ class Product {
     required this.description,
     required this.image,
     required this.category,
+    this.quantity = 1,
   });
 
   // Factory constructor to create a Product object from JSON data
@@ -24,6 +26,9 @@ class Product {
       description: json['description'],
       image: json['image'],
       category: json['category'],
+      quantity: json.containsKey('quantity')
+          ? json['quantity']
+          : 1, // Handle missing quantity
     );
   }
 }

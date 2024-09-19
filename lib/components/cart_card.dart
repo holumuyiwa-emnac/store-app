@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 
 class CartCard extends StatelessWidget {
   final String itemName;
-  final int itemPrice;
+  final double itemPrice;
   final Image itemImage;
   final String category;
+  final int quantity;
 
   const CartCard(
       {super.key,
       required this.itemName,
       required this.itemPrice,
       required this.itemImage,
-      required this.category});
+      required this.category,
+      required this.quantity});
 
   @override
   Widget build(BuildContext context) {

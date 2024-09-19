@@ -3,98 +3,59 @@
 import 'package:flutter/material.dart';
 import '../Pages/product_page.dart';
 import '../components/cart_card.dart';
+import '../components/api_service.dart';
+import '../components/product_class.dart';
 
-class Cart {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final String image;
+class CartPage extends StatefulWidget {
+  final int userId = 1;
 
-  Cart({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.description,
-    required this.image,
+  const CartPage({
+    super.key,
   });
 
-  // Factory constructor to create a Product object from JSON data
-  factory Cart.fromJson(Map<String, dynamic> json) {
-    return Cart(
-      id: json['id'],
-      title: json['title'],
-      price: json['price'].toDouble(),
-      description: json['description'],
-      image: json['image'],
-    );
-  }
+  @override
+  State<CartPage> createState() => _CartPageState();
 }
 
-class CartPage extends StatelessWidget {
-  CartPage({super.key});
+class _CartPageState extends State<CartPage> {
+  List<Product> cartItems = [];
+  bool isLoading = true;
 
-  final List cart = [
-    {
-      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 55,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Football Shirt",
-      'image': 'product.png',
-      'price': 100,
-      'category': "women's wears"
-    },
-    {
-      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 55,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Football Shirt",
-      'image': 'product.png',
-      'price': 100,
-      'category': "women's wears"
-    },
-    {
-      'name': "Nike F.C. Women's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 55,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Tie-Dye Football Shirt",
-      'image': 'product.png',
-      'price': 65,
-      'category': "women's wears"
-    },
-    {
-      'name': "Adidas Men's Football Shirt",
-      'image': 'product.png',
-      'price': 100,
-      'category': "women's wears"
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadCart();
+  }
+
+  // Function to load the user's cart
+  Future<void> _loadCart() async {
+    try {
+      List<dynamic> cart = await fetchCart(widget.userId);
+      List<Product> fetchedItems = [];
+
+      for (var cartItem in cart) {
+        int productId = cartItem['productId'];
+        Product product = await fetchProductDetail(productId);
+        product.quantity = cartItem['quantity'];
+        fetchedItems.add(product);
+      }
+
+      setState(() {
+        cartItems = fetchedItems;
+        isLoading = false;
+      });
+    } catch (e) {
+      print("Error fetching cart: $e");
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   double calculateTotal() {
     double total = 0.0;
-    for (var amount in cart) {
-      total += amount['price'];
+    for (var item in cartItems) {
+      total += item.price * item.quantity; // Total considering quantity
     }
     return total;
   }
@@ -105,37 +66,37 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      body: ListView(
+      body: Column(
         children: [
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: ListView.builder(
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: cart.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductPage(
-                            productId: 11,
+              child: isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      itemCount: cartItems.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(
+                                  productId: cartItems[index].id,
+                                ),
+                              ),
+                            );
+                          },
+                          child: CartCard(
+                            itemName: cartItems[index].title,
+                            itemPrice: cartItems[index].price,
+                            itemImage: Image.network(cartItems[index].image),
+                            category: cartItems[index].category,
+                            quantity: cartItems[index].quantity, // Add quantity
                           ),
-                        ),
-                      );
-                    },
-                    child: CartCard(
-                      itemName: cart[index]['name'],
-                      itemPrice: cart[index]['price'],
-                      itemImage: Image(
-                          image: AssetImage('assets/${cart[index]['image']}')),
-                      category: cart[index]['category'],
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
             ),
           ),
           Container(
@@ -163,8 +124,9 @@ class CartPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 12),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(4)),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   child: Text(
                     'Check Out',
                     style: TextStyle(
@@ -176,7 +138,7 @@ class CartPage extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
